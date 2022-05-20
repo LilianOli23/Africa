@@ -1,0 +1,40 @@
+//
+//  InsetFactView.swift
+//  Africa
+//
+//  Created by Lilian De Oliveira Silva on 19/05/22.
+//
+
+import SwiftUI
+
+struct InsetFactView: View {
+    
+    //MARK: - PROPERTIES
+    
+    let animal: Animal
+    
+    //MARK: - BODY
+
+    var body: some View {
+        GroupBox {
+            TabView{
+                ForEach(animal.fact, id: \.self) { item in
+                    Text(item)
+                }
+            }//: TABS
+            .tabViewStyle(PageTabViewStyle())
+            .frame(minHeight: 180, idealHeight: 168, maxHeight: 180)
+        }//: BOX
+    }
+}
+
+//MARK: - PREVIEW
+
+struct InsetFactView_Previews: PreviewProvider {
+    static let animals: [Animal] = Bundle.main.decode("animals.json")
+    static var previews: some View {
+        InsetFactView(animal: animals[0])
+            .previewLayout(.sizeThatFits)
+            .padding()
+    }
+}
